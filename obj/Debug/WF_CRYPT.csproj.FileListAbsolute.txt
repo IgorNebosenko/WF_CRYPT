@@ -1,0 +1,9 @@
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\bin\Debug\WF_CRYPT.exe.config
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\bin\Debug\WF_CRYPT.exe
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\bin\Debug\WF_CRYPT.pdb
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\obj\Debug\WF_CRYPT.csprojResolveAssemblyReference.cache
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\obj\Debug\WF_CRYPT.Form1.resources
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\obj\Debug\WF_CRYPT.Properties.Resources.resources
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\obj\Debug\WF_CRYPT.csproj.GenerateResource.Cache
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\obj\Debug\WF_CRYPT.exe
+C:\Users\Hazker\Desktop\Homeworks\WF_CRYPT\WF_CRYPT\obj\Debug\WF_CRYPT.pdb
