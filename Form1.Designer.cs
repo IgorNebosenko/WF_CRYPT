@@ -49,8 +49,6 @@
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.buttonPause = new System.Windows.Forms.Button();
-            this.buttonStop = new System.Windows.Forms.Button();
             this.groupCrypt.SuspendLayout();
             this.groupType.SuspendLayout();
             this.groupKey.SuspendLayout();
@@ -252,35 +250,13 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(40, 296);
+            this.buttonStart.Location = new System.Drawing.Point(12, 296);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(220, 53);
+            this.buttonStart.Size = new System.Drawing.Size(760, 53);
             this.buttonStart.TabIndex = 13;
             this.buttonStart.Text = "Start!";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
-            // 
-            // buttonPause
-            // 
-            this.buttonPause.Enabled = false;
-            this.buttonPause.Location = new System.Drawing.Point(286, 296);
-            this.buttonPause.Name = "buttonPause";
-            this.buttonPause.Size = new System.Drawing.Size(220, 53);
-            this.buttonPause.TabIndex = 14;
-            this.buttonPause.Text = "Pause...";
-            this.buttonPause.UseVisualStyleBackColor = true;
-            this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
-            // 
-            // buttonStop
-            // 
-            this.buttonStop.Enabled = false;
-            this.buttonStop.Location = new System.Drawing.Point(526, 296);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(220, 53);
-            this.buttonStop.TabIndex = 15;
-            this.buttonStop.Text = "Stop";
-            this.buttonStop.UseVisualStyleBackColor = true;
-            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
             // 
             // Form1
             // 
@@ -288,8 +264,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(784, 361);
-            this.Controls.Add(this.buttonStop);
-            this.Controls.Add(this.buttonPause);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.label1);
@@ -342,8 +316,6 @@
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Button buttonPause;
-        private System.Windows.Forms.Button buttonStop;
     }
 }
 

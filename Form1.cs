@@ -88,8 +88,6 @@ namespace WF_CRYPT
                 this.buttonkey.Enabled = false;
 
             this.buttonStart.Enabled = bStatus;
-            this.buttonPause.Enabled = !bStatus;
-            this.buttonStop.Enabled = !bStatus;
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
@@ -107,36 +105,6 @@ namespace WF_CRYPT
 
                 handler.EndInvoke(iObj);
 
-
-                //while (iStatusCrypt < IMaxValueProgress)
-                //{
-                //    if (this.rbXOR.Checked)
-                //        iStatusCrypt = c.CryptProcess(Crypt.XOR);
-                //    else if (this.rbCrypt.Checked)
-                //        iStatusCrypt = c.CryptProcess(Crypt.CryptCaesar);
-                //    else
-                //        iStatusCrypt = c.CryptProcess(Crypt.DecryptCaesar);
-
-                //    this.progressBar1.Value = iStatusCrypt;
-                //}
-                //this.progressBar1.Value = IMaxValueProgress;
-                //c.CloseFiles();
-
-                //cp.Open();
-                //int iStatusCopy = 0;
-                //while (iStatusCopy < IMaxValueProgress)
-                //{
-                //    iStatusCopy = cp.Copy();
-                //    this.progressBar2.Value = iStatusCopy;
-                //}
-                //this.progressBar2.Value = IMaxValueProgress;
-                //cp.Close();
-
-                //cp.Replace();
-                //MessageBox.Show("Covertation complete!", "Succesfull!");
-                //this.progressBar1.Value = 0;
-                //this.progressBar2.Value = 0;
-
             }
             catch (Exception ex)
             {
@@ -149,17 +117,6 @@ namespace WF_CRYPT
                 this.EditStatus(true);
             }
         }
-
-        private void buttonPause_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonStop_Click(object sender, EventArgs e)
-        {
-            this.EditStatus(true);
-        }
-
         delegate void DCrypt();
 
         private void CryptAsync()
