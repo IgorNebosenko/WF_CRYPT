@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WF_CRYPT
 {
+    /// <summary>
+    /// <c>Main class</c>
+    /// </summary>
     static class Program
     {
         /// <summary>
-        /// Главная точка входа для приложения.
+        /// <s>Defines main entry for application</s>
         /// </summary>
         [STAThread]
         static void Main()

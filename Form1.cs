@@ -1,42 +1,71 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Threading;
 
 namespace WF_CRYPT
 {
+    /// <summary>
+    /// <s>Need for draw and work with form</s>
+    /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// <s>This field need to draw select file dialog</s>
+        /// </summary>
         OpenFileDialog ofd = null;
+
+        /// <summary>
+        /// <s>defines maximum value for progressbar</s>
+        /// </summary>
         const int IMaxValueProgress = 1000;
+
+        /// <summary>
+        /// <s>Field of object Crypt</s>
+        /// </summary>
         Crypt c = null;
+
+        /// <summary>
+        /// <s>Field of object CopyProgress</s>
+        /// </summary>
         CopyProgress cp = null;
 
+        /// <summary>
+        /// <s>Constructor for initzilize form</s>
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
             ofd = new OpenFileDialog();
         }
 
+        /// <summary>
+        /// <c>Defines is selected crypt by Caesar.</c>
+        /// <c>Set group with Crypt/Decrypt to enabled</c>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbCaesar_CheckedChanged(object sender, EventArgs e)
         {
             if (this.rbCaesar.Checked)
                 this.groupType.Enabled = true;
         }
 
+        /// <summary>
+        /// <c>Defines is selected crypt by XOR.</c>
+        /// <c>Disable group with Crypt/Decrypt</c>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbXOR_CheckedChanged(object sender, EventArgs e)
         {
             if(this.rbXOR.Checked)
                 this.groupType.Enabled = false;
         }
 
+        /// <summary>
+        /// <s>Defines key as such as string</s>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbString_CheckedChanged(object sender, EventArgs e)
         {
             if (rbString.Checked)
@@ -46,6 +75,11 @@ namespace WF_CRYPT
             }
         }
 
+        /// <summary>
+        /// <s>Defines key as such as file</s>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbFile_CheckedChanged(object sender, EventArgs e)
         {
             if (rbFile.Checked)
@@ -55,18 +89,33 @@ namespace WF_CRYPT
             }
         }
 
+        /// <summary>
+        /// <s>Show DialogMessage for select file</s>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSource_Click(object sender, EventArgs e)
         {
             this.ofd.ShowDialog();
             this.textBoxSource.Text = this.ofd.FileName;
         }
 
+        /// <summary>
+        /// <s>Show DialogMessage for select key as file</s>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonkey_Click(object sender, EventArgs e)
         {
             this.ofd.ShowDialog();
             this.textBoxKey.Text = this.ofd.FileName;
         }
 
+        /// <summary>
+        /// <s>Enable or disable elements of form</s>
+        /// <paramref bStatus="true - enable elements, false - disable"/>
+        /// </summary>
+        /// <param name="bStatus"></param>
         private void EditStatus(bool bStatus)
         {
             this.groupCrypt.Enabled = bStatus;
@@ -90,6 +139,11 @@ namespace WF_CRYPT
             this.buttonStart.Enabled = bStatus;
         }
 
+        /// <summary>
+        /// <s>Starts crypt</s>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonStart_Click(object sender, EventArgs e)
         {
             this.c = new Crypt(this.textBoxSource.Text, this.textBoxKey.Text, this.rbFile.Checked);
@@ -117,8 +171,15 @@ namespace WF_CRYPT
                 this.EditStatus(true);
             }
         }
+
+        /// <summary>
+        /// <s>Delegate for Async block</s>
+        /// </summary>
         delegate void DCrypt();
 
+        /// <summary>
+        /// <s>Async crypt</s>
+        /// </summary>
         private void CryptAsync()
         {
             int iStatusCrypt = 0;

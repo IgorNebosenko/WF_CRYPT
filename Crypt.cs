@@ -10,26 +10,85 @@ namespace WF_CRYPT
 {
     class Crypt
     {
-        public const string tmpPath = "tmp.dat";                                                    //Path with temporaly file
-        public const int ISizeBlock = 4096 * 1024;                                                  //Size of block. 4 MB
-        const int IMaxValByte = 256;                                                                //Maximum value of byte + 1
+        /// <summary>
+        /// <s>Path with temporaly file</s>
+        /// </summary>
+        public const string tmpPath = "tmp.dat";
 
-        string sPath = null;                                                                        //String with path to file
-        string sKey = null;                                                                         //String with key.Is this path or not - defines next bool
-        bool bKeyFile = false;                                                                      //Defines is key file or not
+        /// <summary>
+        /// <s>Size of block. 4 MB</s>
+        /// </summary>
+        public const int ISizeBlock = 4096 * 1024;
 
-        long iPosFile = 0;                                                                          //Defines current position seek in file
-        long iSizeFile = 0;                                                                         //Defines size of file
-        long iPosKey = 0;                                                                           //Defines current position of key(file/string)
-        long iSizeKey = 0;                                                                          //Defines size of key
+        /// <summary>
+        /// <s>Maximum value of byte + 1</s>
+        /// </summary>
+        const int IMaxValByte = 256;
 
-        FileStream fsFile = null;                                                                   //FileStream of file
-        FileStream fsKey = null;                                                                    //FileStream of key, if need
-        FileStream fsTmp = null;                                                                    //FileStream of temporaly file
 
+        /// <summary>
+        /// <s>String with path to file</s>
+        /// </summary>
+        string sPath = null;
+
+        /// <summary>
+        /// <s>String with key.Is this path or not - defines next bool</s>
+        /// </summary>
+        string sKey = null;
+
+        /// <summary>
+        /// <s>Defines is key file or not</s>
+        /// </summary>
+        bool bKeyFile = false;
+
+        /// <summary>
+        /// <s>Defines current position seek in file</s>
+        /// </summary>
+        long iPosFile = 0;
+
+        /// <summary>
+        /// <s>Defines size of file</s>
+        /// </summary>
+        long iSizeFile = 0;
+
+        /// <summary>
+        /// <s>Defines current position of key(file/string)</s>
+        /// </summary>
+        long iPosKey = 0;
+
+        /// <summary>
+        /// <s>Defines size of key</s>
+        /// </summary>
+        long iSizeKey = 0;
+
+        /// <summary>
+        /// <s>FileStream of file</s>
+        /// </summary>
+        FileStream fsFile = null;
+
+        /// <summary>
+        /// <s>FileStream of key, if need</s>
+        /// </summary>
+        FileStream fsKey = null;
+
+        /// <summary>
+        /// <s>FileStream of temporaly file</s>
+        /// </summary>
+        FileStream fsTmp = null;
+
+        /// <summary>
+        /// <s>Buffer with block of file. Size equals ISizeBlock</s>
+        /// </summary>
         byte[] sBlockFile = null;
+
+        /// <summary>
+        /// <s>Buffer with block of key. Size equals ISizeBlock</s>
+        /// </summary>
         byte[] sBlockKey = null;
 
+        /// <summary>
+        /// <s>Constructor with path to source file, key, and definition is key file</s>
+        /// </summary>
         public Crypt(string sPathFile, string sKey, bool bKeyFile)                                  //There is single constructor
         {
             this.sPath = sPathFile;
@@ -39,6 +98,14 @@ namespace WF_CRYPT
             this.sBlockKey = new byte[ISizeBlock];
         }
 
+        /// <summary>
+        /// <s>Open files. </s>
+        /// <exception cref = "EmptyPathException">Exception of empty path</exception>
+        /// <exception cref = "EmptyStringException">Exception of empty string with key</exception>
+        /// <exception cref = "FileNotFoundException">Exception of not founded file</exception>
+        /// <exception cref = "EqualWaysException">Exception of equal ways to file and key</exception>
+        /// <exception cref = "EmptyFileException">Exception of empty file</exception>
+        /// </summary>
         public void OpenFile()
         {
             try
@@ -83,6 +150,10 @@ namespace WF_CRYPT
                 throw;
             }
         }
+
+        /// <summary>
+        /// <s>Close files</s>
+        /// </summary>
         public void CloseFiles()
         {
             if (this.fsFile != null)
@@ -102,12 +173,30 @@ namespace WF_CRYPT
             }
         }
 
+        /// <summary>
+        /// <s>Delegate for select crypt</s>
+        /// </summary>
         public delegate int Pred(int value_left, int value_right);
 
+        /// <summary>
+        /// <s>Predicat of crypt by XOR</s>
+        /// <return>Encrypted variable</return>
+        /// </summary>
+        /// <param name="value_left"></param>
+        /// <param name="valur_right"></param>
+        /// <returns></returns>
         public static int XOR(int value_left, int valur_right)
         {
             return value_left ^ valur_right;
         }
+
+        /// <summary>
+        /// <s>Predicate of crypt by Caesar</s>
+        /// <return>Encrypted variable</return>
+        /// </summary>
+        /// <param name="value_left"></param>
+        /// <param name="value_right"></param>
+        /// <returns></returns>
         public static int CryptCaesar(int value_left, int value_right)
         {
             value_left += value_right;                                                              //Never be out of range values, because works with bytes
@@ -115,6 +204,14 @@ namespace WF_CRYPT
                 value_left -= IMaxValByte;
             return value_left;
         }
+
+        /// <summary>
+        /// <s>Predicate of decrypt by Caesar</s>
+        /// <return>Encrypted variable</return> 
+        /// </summary>
+        /// <param name="value_left"></param>
+        /// <param name="value_right"></param>
+        /// <returns></returns>
         public static int DecryptCaesar(int value_left, int value_right)
         {
             value_left -= value_right;
@@ -123,6 +220,12 @@ namespace WF_CRYPT
             return value_left;
         }
 
+        /// <summary>
+        /// <s>Crypt file, with selected predicate</s>
+        /// <return>Value of progress crypt. Array of values 0...1000</return>
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public int CryptProcess(Pred p)
         {
             int iNumReadFile = this.fsFile.Read(this.sBlockFile, 0, ISizeBlock);
